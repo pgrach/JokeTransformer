@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<body>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,28 +8,49 @@
     <script src="/script.js" defer></script>
     <title>Joke Transformer</title>
 </head>
-<div class="container">
 
-    <h3>Transform the Joke</h3>
-    <button class="btn" id = "bringItBtn">Bring it up!</button>
+<body>
 
-    <form>
-        <fieldset>
-            <legend class="form-heading">Eh?</legend>
-            <p id="selected"></p>
-        </fieldset>
-    </form>
+    <div class="container">
 
-    <button class="btn" id = "transBtn">Transform!</button>
-    
-    <form id="buttonForm">
-        <fieldset>
-            <legend class="form-heading">Select words</legend>
-            <button id = "markerBtn">🧽</button>
-            <p id="draft"></p>
-        </fieldset>
-    </form>
-</div>
+        <h3>Transform the Joke</h3>
+
+        <button class="btn" id="bringItBtn">Bring it up!</button>
+
+        <form>
+            <fieldset>
+                <legend class="form-heading">Eh?</legend>
+                <p id="selected"></p>
+            </fieldset>
+        </form>
+
+        <button class="btn" id="transBtn">Transform!</button>
+
+        <form id="buttonForm">
+            <fieldset>
+                <legend class="form-heading">Select words</legend>
+                <button id="markerBtn"><span id="emoji">🧽</span></button>
+
+                <!-- dedicated script to animate the emoji  -->
+                <script>
+                    const emoji = document.getElementById('emoji');
+                    const markerBtn = document.getElementById('markerBtn');
+
+                    markerBtn.addEventListener('mouseover', function () {
+                        emoji.style.animation = 'tremble 0.5s infinite';
+                    });
+
+                    markerBtn.addEventListener('mouseout', function () {
+                        emoji.style.animation = '';
+                    });
+                </script>
+                <!-- -------------------------- -->
+
+                <p id="draft"></p>
+
+            </fieldset>
+        </form>
+    </div>
 
 </body>
 

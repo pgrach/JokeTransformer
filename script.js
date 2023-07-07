@@ -11,6 +11,7 @@ const selected = document.getElementById("selected")
 const transBtn = document.getElementById("transBtn")
 const draft = document.getElementById("draft")
 
+
 bringItBtn.addEventListener("click", () => {
     // Generate a new random number each time the button is clicked
     const random = Math.floor(Math.random()*set.length)

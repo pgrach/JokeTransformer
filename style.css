@@ -1,15 +1,16 @@
 :root {
---cerise: #f42069ff;
---fairy-tale: #facadeff;
---celeste: #c0ffeeff;
---aquamarine: #0ff1ceff;
---yellow-green: #b4da55ff;
---mexican-pink: #de1e7eff;
+    --cerise: #f42069ff;
+    --fairy-tale: #facadeff;
+    --celeste: #c0ffeeff;
+    --aquamarine: #0ff1ceff;
+    --yellow-green: #b4da55ff;
+    --mexican-pink: #de1e7eff;
 }
 
 * {
     background-color: var(--celeste);
 }
+
 .container {
     display: flex;
     flex-direction: column;
@@ -33,22 +34,44 @@
 }
 
 #markerBtn {
-    width: 50px;
-    height: 50px;
+    display: flex; /* Make the button a flex container */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
-    font-size: 24px;
+    font-size: 1rem;
     border: none;
     background-color: var(--yellow-green);
     transition: transform 0.3s ease-in-out;
 }
 
 #markerBtn:hover {
-    /* On hover, scale the button to make it slightly larger */
-    transform: scale(1.1);
-    cursor: pointer; /* Change the cursor to a hand pointer on hover */
+    transform: scale(1.1); /* On hover, scale the button to make it slightly larger */
+    cursor:grab; /* Change the cursor to a grab on hover */
 }
 
 #markerBtn:active {
     /* On click, scale the button back down slightly for a "pressed" effect */
     transform: scale(0.95);
+}
+
+#emoji {
+    background: transparent;
+}
+
+#markerBtn:hover #emoji {
+    animation-play-state: running;
+}
+
+@keyframes tremble {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25%, 75% {
+        transform: translateX(20%);
+    }
+    50% {
+        transform: translateX(-20%);
+    }
 }
