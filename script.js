@@ -33,6 +33,11 @@ transBtn.addEventListener("click", () => {
     draft.innerText = selected.innerText
 })
 
-markerBtn.addEventListener("click", () => {
-  selected.style.cursor = "🧽"
-})
+markerBtn.addEventListener('click', function () {
+    let style = document.createElement('style');
+    style.innerHTML = `
+    * {
+        cursor: url('cursor.cur'), auto;
+    }`;
+    document.head.appendChild(style);
+  })
