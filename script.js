@@ -10,11 +10,14 @@ const bringItBtn = document.getElementById("bringItBtn")
 const selected = document.getElementById("selected")
 const transBtn = document.getElementById("transBtn")
 const draft = document.getElementById("draft")
+const emoji = document.getElementById('emoji') // for styling
+const markerBtn = document.getElementById('markerBtn')
+
 
 
 bringItBtn.addEventListener("click", () => {
     // Generate a new random number each time the button is clicked
-    const random = Math.floor(Math.random()*set.length)
+    const random = Math.floor(Math.random() * set.length)
 
     // Replace the old joke with a new one
     selected.innerText = set[random]
@@ -22,4 +25,16 @@ bringItBtn.addEventListener("click", () => {
 
 transBtn.addEventListener("click", () => {
     draft.innerText = selected.innerText
+})
+
+// markerBtn.addEventListener("click", () = > {
+//   selected.style.backgroundColor = "red"
+// })
+
+// dedicated for styling of emoji button
+markerBtn.addEventListener('mouseover', function () {
+    emoji.style.animation = 'tremble 0.5s infinite'
+})
+markerBtn.addEventListener('mouseout', function () {
+    emoji.style.animation = ''
 })

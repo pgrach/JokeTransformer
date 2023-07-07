@@ -30,22 +30,6 @@
             <fieldset>
                 <legend class="form-heading">Select words</legend>
                 <button id="markerBtn"><span id="emoji">🧽</span></button>
-
-                <!-- dedicated script to animate the emoji  -->
-                <script>
-                    const emoji = document.getElementById('emoji');
-                    const markerBtn = document.getElementById('markerBtn');
-
-                    markerBtn.addEventListener('mouseover', function () {
-                        emoji.style.animation = 'tremble 0.5s infinite';
-                    });
-
-                    markerBtn.addEventListener('mouseout', function () {
-                        emoji.style.animation = '';
-                    });
-                </script>
-                <!-- -------------------------- -->
-
                 <p id="draft"></p>
 
             </fieldset>
