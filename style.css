@@ -1,0 +1,54 @@
+:root {
+--cerise: #f42069ff;
+--fairy-tale: #facadeff;
+--celeste: #c0ffeeff;
+--aquamarine: #0ff1ceff;
+--yellow-green: #b4da55ff;
+--mexican-pink: #de1e7eff;
+}
+
+* {
+    background-color: var(--celeste);
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn {
+    cursor: pointer;
+    background-color: var(--fairy-tale);
+    transition: background-color 0.3s ease;
+    margin: 0.5%;
+}
+
+.btn:hover {
+    background-color: var(--cerise);
+}
+
+#buttonForm {
+    display: flex;
+    align-items: center;
+}
+
+#markerBtn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    border: none;
+    background-color: var(--yellow-green);
+    transition: transform 0.3s ease-in-out;
+}
+
+#markerBtn:hover {
+    /* On hover, scale the button to make it slightly larger */
+    transform: scale(1.1);
+    cursor: pointer; /* Change the cursor to a hand pointer on hover */
+}
+
+#markerBtn:active {
+    /* On click, scale the button back down slightly for a "pressed" effect */
+    transform: scale(0.95);
+}
