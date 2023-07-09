@@ -33,34 +33,47 @@ transBtn.addEventListener("click", () => {
     draft.innerText = selected.innerText
 })
 
-markerBtn.addEventListener('click', function () {
-    let style = document.createElement('style')
-    style.innerHTML = `
-    * {
-        cursor: url('cursor.cur'), auto;
-    }`;
-    document.head.appendChild(style)
+let newEmoji = null;  // Create a variable to hold the reference to the new event
 
-    // Set marker mode active
-    markerMode = true
+markerBtn.addEventListener('click', () => {
+    if (!newEmoji) {
+        // Replace the emoji with another span element
+        let newSpan = document.createElement('span')
+        newSpan.id = "newEmoji"
+        newSpan.innerText = '🔃'
+        emoji.replaceWith(newSpan)
+
+        // Change the cursor style within the drafting area
+        let spongeArea = document.getElementById("spongeArea")
+        let style = document.createElement('style')
+        style.innerHTML = `
+        #spongeArea {
+            cursor: url('cursor.cur'), auto;
+        }`
+        document.head.appendChild(style)
+
+        // Save the reference to the new emoji element
+        newEmoji = newSpan
+
+        // Save the original joke to draft only when new emoji is created
+        draft.innerText = selected.innerText
+    } else {
+        // Reset the draft content to the original joke
+        draft.innerText = selected.innerText
+    }
 })
 
-// Initiate marker mode
-let markerMode = false
-
 // Listen to mouseup event to perform text highlighting
-document.addEventListener('mouseup', function () {
-    if (!markerMode) {
-        alert("Please take the sponge first!")
-        return
-    }
-    let selection = window.getSelection()
-    if (selection.toString().length > 0) {
-        let span = document.createElement('span')
-        span.style.backgroundColor = 'yellow' // the color of the marker
-        span.className = 'highlight'
-        let range = selection.getRangeAt(0)
-        range.surroundContents(span)
-        selection.removeAllRanges()
+draft.addEventListener('mouseup', function () {
+    if (newEmoji) {
+        let selection = window.getSelection()
+        if (selection.toString().length > 0) {
+            let span = document.createElement('span')
+            span.style.backgroundColor = '#de1e7eff' // the color of the marker
+            span.className = 'highlight'
+            let range = selection.getRangeAt(0)
+            range.surroundContents(span)
+            selection.removeAllRanges()
+        }
     }
 })

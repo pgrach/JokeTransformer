@@ -57,6 +57,10 @@
 }
 
 #emoji {
+    background: transparent;  
+}
+
+#newEmoji {
     background: transparent;
 }
 
