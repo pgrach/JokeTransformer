@@ -34,10 +34,33 @@ transBtn.addEventListener("click", () => {
 })
 
 markerBtn.addEventListener('click', function () {
-    let style = document.createElement('style');
+    let style = document.createElement('style')
     style.innerHTML = `
     * {
         cursor: url('cursor.cur'), auto;
     }`;
-    document.head.appendChild(style);
-  })
+    document.head.appendChild(style)
+
+    // Set marker mode active
+    markerMode = true
+})
+
+// Initiate marker mode
+let markerMode = false
+
+// Listen to mouseup event to perform text highlighting
+document.addEventListener('mouseup', function () {
+    if (!markerMode) {
+        alert("Please take the sponge first!")
+        return
+    }
+    let selection = window.getSelection()
+    if (selection.toString().length > 0) {
+        let span = document.createElement('span')
+        span.style.backgroundColor = 'yellow' // the color of the marker
+        span.className = 'highlight'
+        let range = selection.getRangeAt(0)
+        range.surroundContents(span)
+        selection.removeAllRanges()
+    }
+})
