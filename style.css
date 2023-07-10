@@ -28,6 +28,14 @@
     background-color: var(--cerise);
 }
 
+.tremble {
+    animation: tremble 0.5s infinite;
+}
+
+.cursor-change {
+    cursor: url('cursor.cur'), auto;
+}
+
 #buttonForm {
     display: flex;
     align-items: center;

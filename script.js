@@ -6,38 +6,38 @@ const set = ["Why did the bicycle fall into the swimming pool? Because it couldn
     "Why did the book go to the gym? To develop better character.",
     "Why do onions wear socks? To keep their layers warm."]
 
+// DOM Element Selection
 const bringItBtn = document.getElementById("bringItBtn")
 const selected = document.getElementById("selected")
 const transBtn = document.getElementById("transBtn")
 const draft = document.getElementById("draft")
 const emoji = document.getElementById('emoji') // for styling
 const markerBtn = document.getElementById('markerBtn')
+let spongeArea = document.getElementById("spongeArea")
+let newEmoji = null;  // Created a variable to hold the reference to the marking process
 
-// dedicated for styling of emoji button
+// Animation for Emoji Button
 markerBtn.addEventListener('mouseover', function () {
-    emoji.style.animation = 'tremble 0.5s infinite'
+    emoji.classList.add('tremble')
 })
 markerBtn.addEventListener('mouseout', function () {
-    emoji.style.animation = ''
+    emoji.classList.remove('tremble')
 })
 
+// Display Joke
 bringItBtn.addEventListener("click", () => {
-    // Generate a new random number each time the button is clicked
     const random = Math.floor(Math.random() * set.length)
-
-    // Replace the old joke with a new one
     selected.innerText = set[random]
 })
 
+// Transfer Joke to marker
 transBtn.addEventListener("click", () => {
     draft.innerText = selected.innerText
 })
 
-let newEmoji = null;  // Create a variable to hold the reference to the new event
-
+// Change Emoji
 markerBtn.addEventListener('click', () => {
     if (!newEmoji) {
-        // Replace the emoji with another span element
         let newSpan = document.createElement('span')
         newSpan.id = "newEmoji"
         newSpan.innerText = '🔃'
@@ -54,16 +54,13 @@ markerBtn.addEventListener('click', () => {
 
         // Save the reference to the new emoji element
         newEmoji = newSpan
-
-        // Save the original joke to draft only when new emoji is created
-        draft.innerText = selected.innerText
-    } else {
-        // Reset the draft content to the original joke
-        draft.innerText = selected.innerText
     }
+
+    // Save the original joke to draft whether new emoji is created or not
+    draft.innerText = selected.innerText
 })
 
-// Listen to mouseup event to perform text highlighting
+// Text Highlighting
 draft.addEventListener('mouseup', function () {
     if (newEmoji) {
         let selection = window.getSelection()
