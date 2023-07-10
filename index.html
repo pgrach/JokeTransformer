@@ -26,13 +26,22 @@
 
         <button class="btn" id="transBtn">Transform!</button>
 
-        <fieldset id = "spongeArea">
+        <fieldset id="spongeArea">
             <legend class="form-heading">Let's change it</legend>
             <button id="markerBtn"><span id="emoji">🧽</span></button>
             <p id="draft"></p>
         </fieldset>
 
     </div>
+
+    <svg style="height: 0;">
+        <defs>
+            <filter id="squiggly">
+                <feTurbulence id="turbulence" baseFrequency="0.03" numOctaves="3" result="noise" seed="0" />
+                <feDisplacementMap in2="noise" in="SourceGraphic" scale="10" />
+            </filter>
+        </defs>
+    </svg>
 
 </body>
 

@@ -37,6 +37,12 @@ transBtn.addEventListener("click", () => {
 
 // Change Emoji
 markerBtn.addEventListener('click', () => {
+    // Remove all highlighted text from spongeArea
+    let highlightedElements = spongeArea.querySelectorAll('div')  // assuming 'div' is what you use for highlighted text
+    for (let element of highlightedElements) {
+        spongeArea.removeChild(element)
+    }
+
     if (!newEmoji) {
         let newSpan = document.createElement('span')
         newSpan.id = "newEmoji"
@@ -44,7 +50,6 @@ markerBtn.addEventListener('click', () => {
         emoji.replaceWith(newSpan)
 
         // Change the cursor style within the drafting area
-        let spongeArea = document.getElementById("spongeArea")
         let style = document.createElement('style')
         style.innerHTML = `
         #spongeArea {
@@ -64,6 +69,9 @@ markerBtn.addEventListener('click', () => {
 draft.addEventListener('mouseup', function () {
     if (newEmoji) {
         let selection = window.getSelection()
+
+        if (!selection.rangeCount) return  // Ensure there is a selection
+
         if (selection.toString().length > 0) {
             let span = document.createElement('span')
             span.style.backgroundColor = '#de1e7eff' // the color of the marker
@@ -71,6 +79,15 @@ draft.addEventListener('mouseup', function () {
             let range = selection.getRangeAt(0)
             range.surroundContents(span)
             selection.removeAllRanges()
+            let spongeArea = document.getElementById("spongeArea")
+            let highlighted = document.createElement('div') // Create a div
+
+            // Clone the span and remove the 'highlight' class
+            let clonedSpan = span.cloneNode(true)
+            clonedSpan.classList.remove('highlight')
+
+            highlighted.appendChild(clonedSpan) // Append the cloned span to the new element
+            spongeArea.appendChild(highlighted) // Append the new element to spongeArea
         }
     }
 })

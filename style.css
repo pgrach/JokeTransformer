@@ -36,15 +36,24 @@
     cursor: url('cursor.cur'), auto;
 }
 
+.highlight {
+    font-size: 1.1em;
+    background: #de1e7eff;
+    filter: url(#squiggly);
+}
+
 #buttonForm {
     display: flex;
     align-items: center;
 }
 
 #markerBtn {
-    display: flex; /* Make the button a flex container */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
+    display: flex;
+    /* Make the button a flex container */
+    justify-content: center;
+    /* Center content horizontally */
+    align-items: center;
+    /* Center content vertically */
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
@@ -55,8 +64,10 @@
 }
 
 #markerBtn:hover {
-    transform: scale(1.1); /* On hover, scale the button to make it slightly larger */
-    cursor:grab; /* Change the cursor to a grab on hover */
+    transform: scale(1.1);
+    /* On hover, scale the button to make it slightly larger */
+    cursor: grab;
+    /* Change the cursor to a grab on hover */
 }
 
 #markerBtn:active {
@@ -65,7 +76,7 @@
 }
 
 #emoji {
-    background: transparent;  
+    background: transparent;
 }
 
 #newEmoji {
@@ -77,12 +88,17 @@
 }
 
 @keyframes tremble {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(0);
     }
-    25%, 75% {
+
+    25%,
+    75% {
         transform: translateX(20%);
     }
+
     50% {
         transform: translateX(-20%);
     }
