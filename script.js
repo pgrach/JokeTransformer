@@ -82,11 +82,18 @@ draft.addEventListener('mouseup', function () {
             let spongeArea = document.getElementById("spongeArea")
             let highlighted = document.createElement('div') // Create a div
 
+            // Create an input form
+            let inputForm = document.createElement('input')
+            inputForm.type = 'text'
+            inputForm.placeholder = 'what do you want replace it with...'
+
+
             // Clone the span and remove the 'highlight' class
             let clonedSpan = span.cloneNode(true)
             clonedSpan.classList.remove('highlight')
 
             highlighted.appendChild(clonedSpan) // Append the cloned span to the new element
+            highlighted.appendChild(inputForm) // Append the input form to the new element
             spongeArea.appendChild(highlighted) // Append the new element to spongeArea
         }
     }
