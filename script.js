@@ -98,3 +98,37 @@ draft.addEventListener('mouseup', function () {
         }
     }
 })
+
+// Submit edited joke
+document.addEventListener('submit', (e) => {
+    e.preventDefault()
+  
+    // Get all highlights
+    let highlights = document.querySelectorAll('.highlight')
+    
+    // Construct edited joke
+    let editedJoke = draft.innerText
+    for (let highlight of highlights) {
+      let input = highlight.nextElementSibling
+      let replacement = input.value
+      editedJoke = editedJoke.replace(highlight.innerText, replacement)
+    }
+  
+    // Generate new joke with Anthropic API
+    fetch('https://api.anthropic.com/v1/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'BEARER <api_key>',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        prompt: `Here is a silly joke: ${editedJoke} Can you rewrite it to make it funnier?`, 
+        max_tokens: 64
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      let newJoke = data.text
+      console.log(`New funny joke: ${newJoke}`)
+    })
+  })
