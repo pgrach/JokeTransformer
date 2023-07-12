@@ -16,6 +16,8 @@ const markerBtn = document.getElementById('markerBtn')
 let spongeArea = document.getElementById("spongeArea")
 let newEmoji = null;  // Created a variable to hold the reference to the marking process
 
+const logBtn = document.getElementById("logBtn")
+
 // Animation for Emoji Button
 markerBtn.addEventListener('mouseover', function () {
     emoji.classList.add('tremble')
@@ -99,36 +101,16 @@ draft.addEventListener('mouseup', function () {
     }
 })
 
-// Submit edited joke
-document.addEventListener('submit', (e) => {
-    e.preventDefault()
-  
-    // Get all highlights
-    let highlights = document.querySelectorAll('.highlight')
+// Event Listener for the logging button
+logBtn.addEventListener('click', () => {
+    let initialJoke = draft.innerText
+    let highlights = spongeArea.querySelectorAll('div')
     
-    // Construct edited joke
-    let editedJoke = draft.innerText
-    for (let highlight of highlights) {
-      let input = highlight.nextElementSibling
-      let replacement = input.value
-      editedJoke = editedJoke.replace(highlight.innerText, replacement)
-    }
-  
-    // Generate new joke with Anthropic API
-    fetch('https://api.anthropic.com/v1/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'BEARER <api_key>',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        prompt: `Here is a silly joke: ${editedJoke} Can you rewrite it to make it funnier?`, 
-        max_tokens: 64
-      })
+    console.log(`Prompt: Here is a silly joke ${initialJoke}. Can you rewrite it to make it funnier while being close to the original and replacing:`)
+    
+    highlights.forEach(highlight => {
+        let original = highlight.children[0].innerText
+        let replacement = highlight.children[1].value
+        console.log(`${original} with ${replacement}`)
     })
-    .then(response => response.json())
-    .then(data => {
-      let newJoke = data.text
-      console.log(`New funny joke: ${newJoke}`)
-    })
-  })
+})
