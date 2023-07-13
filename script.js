@@ -121,11 +121,13 @@ draft.addEventListener('mouseup', function () {
       // Create an input form
       let inputForm = document.createElement('input')
       inputForm.type = 'text'
-      inputForm.placeholder = 'what do you want replace it with...'
+      inputForm.placeholder = 'word to replace it with.'
 
       // Clone the span and remove the 'highlight' class
       let clonedSpan = span.cloneNode(true)
       clonedSpan.classList.remove('highlight')
+      clonedSpan.style.display = 'inline-block';  // Add this line
+      clonedSpan.style.width = '200px';  // Add this line, adjust the width as per your requirements
 
       logBtn.style.display = 'block'
 
@@ -154,4 +156,3 @@ logBtn.addEventListener('click', () => {
   });
 
 });
-
