@@ -7,6 +7,7 @@ const set = ["Why did the bicycle fall into the swimming pool? Because it couldn
   "Why do onions wear socks? To keep their layers warm."]
 
 // DOM Element Selection
+const toggle = document.getElementById('dark-mode-toggle');
 const bringItBtn = document.getElementById("bringItBtn")
 const selected = document.getElementById("selected")
 const transBtn = document.getElementById("transBtn")
@@ -16,6 +17,11 @@ const markerBtn = document.getElementById("markerBtn")
 let spongeArea = document.getElementById("spongeArea")
 let newEmoji = null;  // Created a variable to hold the reference to the marking process
 const logBtn = document.getElementById("logBtn")
+
+//Toggle functionality
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+});
 
 // Hide elements on load
 const form = document.querySelector('form')
