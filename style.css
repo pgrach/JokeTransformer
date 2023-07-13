@@ -170,6 +170,10 @@ input:checked+.slider:before {
     flex-direction: column;  /* This is to align the items vertically */
 }
 
+.highlight {
+    filter: url(#squiggly);
+}
+
 @keyframes tremble {
 
     0%,

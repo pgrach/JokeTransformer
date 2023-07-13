@@ -1,10 +1,19 @@
-const set = ["Why did the bicycle fall into the swimming pool? Because it couldn’t find its towel.", "Why do ducks wear dog masks? To go quack undercover.", "Why did the cloud date the fog? Because it thought it was mist-erious.", "Why did the tree think it could fly? Because it bought a trunk-load of feathers.",
-  "Why do elephants use computers? Because they can't resist the mouse.",
-  "Why did the clock go to the beach? It wanted to be a sundial.",
-  "Why did the rainbow break up with the crayon box? It wanted more space.",
-  "Why did the chicken join a band? Because it had the drumsticks.",
-  "Why did the book go to the gym? To develop better character.",
-  "Why do onions wear socks? To keep their layers warm."]
+async function getJoke() {
+  const response = await fetch('https://v2.jokeapi.dev/joke/Any');
+  const data = await response.json();
+
+  if (data.joke) { // Single line joke
+    return data.joke;
+  } else { // Two part joke
+    return data.setup + " " + data.delivery;
+  }
+}
+
+async function getNewJoke() {
+  return getJoke().then(joke => {
+    selected.innerText = joke;
+  });
+}
 
 // DOM Element Selection
 const toggle = document.getElementById('dark-mode');
@@ -34,10 +43,14 @@ spongeArea.style.display = 'none'
 gif.style.display = 'none'
 sorry.style.display = 'none'
 
-// Show form on bringItBtn click   
+
+// Display a random joke from API
 bringItBtn.addEventListener('click', () => {
-  form.style.display = 'block'
-  transBtn.style.display = 'block'
+  bringItBtn.innerText = "Try another one"
+  getNewJoke().then(() => {
+    form.style.display = 'block'
+    transBtn.style.display = 'block'
+  });
 });
 
 // Show spongeArea on transBtn click
@@ -51,13 +64,6 @@ markerBtn.addEventListener('mouseover', function () {
 })
 markerBtn.addEventListener('mouseout', function () {
   emoji.classList.remove('tremble')
-})
-
-// Display Joke
-bringItBtn.addEventListener("click", () => {
-  const random = Math.floor(Math.random() * set.length)
-  selected.innerText = set[random]
-
 })
 
 // Transfer Joke to marker
