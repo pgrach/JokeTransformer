@@ -1,45 +1,53 @@
 :root {
     --bg: #fff;
     --text: #222;
-    --primary: #008cff; 
-  }
-  
-  body.dark-mode {
+    --primary: #008cff;
+    --fairy-tale: rgb(241, 191, 200);
+    --cerise: red;
+    --yellow-green: green;
+    --highl: rgba(255, 255, 0, 0.438);
+}
+
+body.dark-mode {
     --bg: #222;
     --text: #fff;
     --primary: #fff;
-  }
-  
-  /* Light Theme Styles */ 
-  
-  body {
+    --fairy-tale: grey;
+    --cerise: #2196F3;
+    --yellow-green: darkblue;
+    --highl: rgba(255, 255, 0, 0.438);
+
+}
+
+/* Light Theme Styles */
+body {
     background-color: var(--bg);
     color: var(--text);
-  }
-  
-  /* Toggle Switch Styles */
+}
 
-  .toggle {
+/* Toggle Switch Styles */
+
+.toggle {
     position: absolute;
     top: 20px;
     right: 20px;
-  }
-  
-  .switch {
+}
+
+.switch {
     position: relative;
     display: inline-block;
     width: 60px;
-    height: 34px;  
-  }
-  
-  /* Hide default HTML checkbox */
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
 .switch input {
     opacity: 0;
     width: 0;
     height: 0;
-  }
+}
 
-  /* Slider */
+/* Slider */
 .slider {
     position: absolute;
     cursor: pointer;
@@ -50,9 +58,9 @@
     background-color: #ccc;
     transition: .4s;
     border-radius: 34px;
-  }
+}
 
-  .slider:before {
+.slider:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -62,39 +70,28 @@
     background-color: white;
     transition: .4s;
     border-radius: 50%;
-  }
-  
-  input:checked + .slider {
-    background-color: #2196F3;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
-    transform: translateX(26px);
-  }  
-
-
-  body {
-    background-color: var(--bg);
-    color: var(--text);
-  }
-  
-  button {
-    background-color: var(--primary);
-  }
-
-  /* ++++++++++++++++++++++++++++++++ */
-  * {
-    background-color: var(--celeste);
 }
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+/* ++++++++++++++++++++++++++++++++ */
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* This centers the children vertically */
+    height: 100vh; /* This is necessary to make vertical centering work */
 }
 
 .btn {
@@ -114,12 +111,6 @@
 
 .cursor-change {
     cursor: url('cursor.cur'), auto;
-}
-
-.highlight {
-    font-size: 1.1em;
-    background: #de1e7eff;
-    filter: url(#squiggly);
 }
 
 #buttonForm {
@@ -167,6 +158,18 @@
     animation-play-state: running;
 }
 
+#gif img {
+    max-height: 20vh;
+    width: auto;
+}
+
+#gif {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;  /* This is to align the items vertically */
+}
+
 @keyframes tremble {
 
     0%,
@@ -183,13 +186,3 @@
         transform: translateX(-20%);
     }
 }
-
-/* Dark Theme Media Query */
-
-@media (prefers-color-scheme: dark) {
-    body.dark-mode {
-      --bg: #222;
-      --text: #fff;
-      --primary: #fff;
-    }
-  }

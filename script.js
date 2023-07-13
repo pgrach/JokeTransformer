@@ -7,7 +7,7 @@ const set = ["Why did the bicycle fall into the swimming pool? Because it couldn
   "Why do onions wear socks? To keep their layers warm."]
 
 // DOM Element Selection
-const toggle = document.getElementById('dark-mode-toggle');
+const toggle = document.getElementById('dark-mode');
 const bringItBtn = document.getElementById("bringItBtn")
 const selected = document.getElementById("selected")
 const transBtn = document.getElementById("transBtn")
@@ -17,6 +17,8 @@ const markerBtn = document.getElementById("markerBtn")
 let spongeArea = document.getElementById("spongeArea")
 let newEmoji = null;  // Created a variable to hold the reference to the marking process
 const logBtn = document.getElementById("logBtn")
+const gif = document.getElementById("gif")
+const sorry = document.getElementById("sorry")
 
 //Toggle functionality
 toggle.addEventListener('click', () => {
@@ -29,6 +31,8 @@ form.style.display = 'none'
 transBtn.style.display = 'none'
 logBtn.style.display = 'none'
 spongeArea.style.display = 'none'
+gif.style.display = 'none'
+sorry.style.display = 'none'
 
 // Show form on bringItBtn click   
 bringItBtn.addEventListener('click', () => {
@@ -100,7 +104,7 @@ draft.addEventListener('mouseup', function () {
 
     if (selection.toString().length > 0) {
       let span = document.createElement('span')
-      span.style.backgroundColor = '#de1e7eff' // the color of the marker
+      span.style.backgroundColor = 'rgba(255, 255, 0, 0.438)' // the color of the marker
       span.className = 'highlight'
       let range = selection.getRangeAt(0)
       range.surroundContents(span)
@@ -128,6 +132,10 @@ draft.addEventListener('mouseup', function () {
 })
 
 logBtn.addEventListener('click', () => {
+  sorry.style.display = 'block'
+  gif.style.display = 'block'
+
+
   let initialJoke = draft.innerText
   console.log(`Prompt: Here is a silly joke: "${initialJoke}". Can you rewrite it to make it funnier while being close to the original and replacing:`)
 
@@ -138,7 +146,6 @@ logBtn.addEventListener('click', () => {
 
     console.log(`${original} with ${replacement}`);
   });
-
 
 });
 
