@@ -10,11 +10,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
 
-h1,
-h2,
-h3,
-.btn {
+h3 {
     font-family: 'Montserrat', sans-serif;
+    color: var(--primary);
+    font-size: 1.75em;
+    text-align: center;
 }
 
 body.dark-mode {
@@ -106,16 +106,25 @@ input:checked+.slider:before {
     /* This is necessary to make vertical centering work */
 }
 
+
 .btn {
-    cursor: pointer;
-    background-color: var(--fairy-tale);
-    transition: background-color 0.3s ease;
-    margin: 0.5%;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn:hover {
-    background-color: var(--cerise);
+    transform: scale(1.05);
+}
+
+.section1, .section2, .section3, .section4, .section5 {
+    padding: 20px 0;
+    text-align: center;
+}
+
+form {
+    margin: 20px 0;
 }
 
 .tremble {
@@ -124,6 +133,24 @@ input:checked+.slider:before {
 
 .cursor-change {
     cursor: url('cursor.cur'), auto;
+}
+
+fieldset {
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+legend.form-heading {
+    padding: 10px;
+    color: var(--primary);
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#bringItBtn, #transBtn {
+    display: block;
+    margin: auto;
 }
 
 #buttonForm {
