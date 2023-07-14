@@ -121,6 +121,7 @@ input:checked+.slider:before {
 .section1, .section2, .section3, .section4, .section5 {
     padding: 20px 0;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
 }
 
 form {
@@ -159,31 +160,28 @@ legend.form-heading {
 }
 
 #markerBtn {
-    display: flex;
-    /* Make the button a flex container */
-    justify-content: center;
-    /* Center content horizontally */
-    align-items: center;
-    /* Center content vertically */
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    font-size: 1rem;
+    display: flex;/* Make the button a flex container */
+    justify-content: center;/* Center content horizontally */
+    align-items: center;/* Center content vertically */
+    width: 3rem;
+    height: 3rem;
+    margin: 1rem;  /* Add some margin */
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);  /* Add a box shadow */
+    border-radius: 30% 30% 30% 30%/30% 30% 30% 30%;
+    font-size: 1.5rem;
     border: none;
     background-color: var(--yellow-green);
     transition: transform 0.3s ease-in-out;
 }
 
 #markerBtn:hover {
-    transform: scale(1.1);
-    /* On hover, scale the button to make it slightly larger */
-    cursor: grab;
-    /* Change the cursor to a grab on hover */
+    transform: scale(1.1);/* On hover, scale the button to make it slightly larger */
+    cursor: grab; /* Change the cursor to a grab on hover */
+    background-color: var(--primary);  /* Change the background color on hover */
 }
 
 #markerBtn:active {
-    /* On click, scale the button back down slightly for a "pressed" effect */
-    transform: scale(0.95);
+    transform: scale(0.95); /* On click, scale the button back down slightly for a "pressed" effect */
 }
 
 #emoji {
