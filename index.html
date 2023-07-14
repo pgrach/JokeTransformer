@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
-    <script src="/script.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
     <title>Joke Transformer</title>
 </head>
 
@@ -18,35 +18,42 @@
     </div>
 
     <div class="container">
+        <div class="section1">
 
-        <h3>Transform the Joke</h3>
+            <h3>Transform the Joke</h3>
 
-        <button class="btn" id="bringItBtn">Bring it up!</button>
+            <button class="btn" id="bringItBtn">Bring it up!</button>
+        </div>
+        <div class="section2">
+            <form id="form">
+                <fieldset>
+                    <legend class="form-heading">Eh?</legend>
+                    <p id="selected"></p>
+                </fieldset>
+            </form>
 
-        <form>
-            <fieldset>
-                <legend class="form-heading">Eh?</legend>
-                <p id="selected"></p>
+            <button class="btn" id="transBtn">Transform!</button>
+        </div>
+        <div class="section3">
+            <fieldset id="spongeArea">
+                <legend class="form-heading">Let's change it</legend>
+                <button id="markerBtn"><span id="emoji">🧽</span></button>
+                <p id="draft"></p>
             </fieldset>
-        </form>
-
-        <button class="btn" id="transBtn">Transform!</button>
-
-        <fieldset id="spongeArea">
-            <legend class="form-heading">Let's change it</legend>
-            <button id="markerBtn"><span id="emoji">🧽</span></button>
-            <p id="draft"></p>
-        </fieldset>
-
-        <button class="btn" id="logBtn">Log the Compilation</button>
-    <div id="sorry">
-        <p>Here supposed to be an AI. So go to console!</p>
-    </div>
-        <div id="gif">
-            <fieldset>
-                <legend class="form-heading">Large Language Model... </legend>
-                <img src="https://media.tenor.com/sodwOPHji4wAAAAd/mullah.gif">
-            </fieldset>
+        </div>
+        <div class="section4">
+            <button class="btn" id="logBtn">See Transformed Joke</button>
+        </div>
+        <div class="section5">
+            <div id="sorry">
+                <p>Here supposed to be an AI. So go to console!</p>
+            </div>
+            <div id="gif">
+                <fieldset>
+                    <legend class="form-heading">Large Language Model... </legend>
+                    <img src="https://media.tenor.com/sodwOPHji4wAAAAd/mullah.gif">
+                </fieldset>
+            </div>
         </div>
     </div>
 

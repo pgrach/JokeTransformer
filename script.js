@@ -1,20 +1,3 @@
-async function getJoke() {
-  const response = await fetch('https://v2.jokeapi.dev/joke/Any');
-  const data = await response.json();
-
-  if (data.joke) { // Single line joke
-    return data.joke;
-  } else { // Two part joke
-    return data.setup + " " + data.delivery;
-  }
-}
-
-async function getNewJoke() {
-  return getJoke().then(joke => {
-    selected.innerText = joke;
-  });
-}
-
 // DOM Element Selection
 const toggle = document.getElementById('dark-mode');
 const bringItBtn = document.getElementById("bringItBtn")
@@ -29,40 +12,62 @@ const logBtn = document.getElementById("logBtn")
 const gif = document.getElementById("gif")
 const sorry = document.getElementById("sorry")
 
+//Sections
+let section1 = document.querySelector(".section1")
+let section2 = document.querySelector(".section2")
+let section3 = document.querySelector(".section3")
+let section4 = document.querySelector(".section4")
+let section5 = document.querySelector(".section5")
+
+// Hide elements on load, except the section1
+section2.style.display = 'none'
+section3.style.display = 'none'
+section4.style.display = 'none'
+section5.style.display = 'none'
+
+
 //Toggle functionality
 toggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
-});
+})
 
-// Hide elements on load
-const form = document.querySelector('form')
-form.style.display = 'none'
-transBtn.style.display = 'none'
-logBtn.style.display = 'none'
-spongeArea.style.display = 'none'
-gif.style.display = 'none'
-sorry.style.display = 'none'
-
+// API Call to get the joke
+const getJoke = async () => {
+  const response = await fetch('https://v2.jokeapi.dev/joke/Any') // API call
+  const data = await response.json() // Converting response to JSON
+  return data.joke ? data.joke : `${data.setup} ${data.delivery}` // Returning the joke or a combination of setup and delivery if joke is not present
+}
 
 // Display a random joke from API
-bringItBtn.addEventListener('click', () => {
-  bringItBtn.innerText = "Try another one"
-  getNewJoke().then(() => {
-    form.style.display = 'block'
-    transBtn.style.display = 'block'
-  });
-});
+bringItBtn.addEventListener('click', async () => {
+  bringItBtn.innerText = "Try another one" // Changing the button text
+  const joke = await getJoke()
+  section2.style.display = 'block' // Making section2 visible
+  selected.innerText = joke // Displaying the fetched joke
+
+    // Hide section3, section4, and section5
+    section3.style.display = 'none'
+    section4.style.display = 'none'
+    section5.style.display = 'none'
+
+  // Remove all highlighted text from spongeArea
+  let highlightedElements = spongeArea.querySelectorAll('div')  // assuming 'div' is what you use for highlighted text
+  for (let element of highlightedElements) {
+    spongeArea.removeChild(element)
+  }
+
+  })
 
 // Show spongeArea on transBtn click
 transBtn.addEventListener('click', () => {
-  spongeArea.style.display = 'block';
-});
+  section3.style.display = 'block' // Making section3 visible
+})
 
 // Animation for Emoji Button
-markerBtn.addEventListener('mouseover', function () {
+markerBtn.addEventListener('mouseover', () => {
   emoji.classList.add('tremble')
 })
-markerBtn.addEventListener('mouseout', function () {
+markerBtn.addEventListener('mouseout', () => {
   emoji.classList.remove('tremble')
 })
 
@@ -99,10 +104,14 @@ markerBtn.addEventListener('click', () => {
 
   // Save the original joke to draft whether new emoji is created or not
   draft.innerText = selected.innerText
+
+  // Hide section4 and section5
+  section4.style.display = 'none'
+  section5.style.display = 'none'
 })
 
 // Text Highlighting
-draft.addEventListener('mouseup', function () {
+draft.addEventListener('mouseup', () => {
   if (newEmoji) {
     let selection = window.getSelection()
 
@@ -121,16 +130,22 @@ draft.addEventListener('mouseup', function () {
       // Create an input form
       let inputForm = document.createElement('input')
       inputForm.type = 'text'
-      inputForm.placeholder = 'word to replace it with.'
+      inputForm.placeholder = 'you want to replace it with...'
+      
+      // event listener that will display the  button (section4) when the user types into the input
+      inputForm.addEventListener('input', () => {
+        if (inputForm.value.length > 0) {
+          section4.style.display = 'block' // Make section4 visible if there is any input
+        } else {
+          section4.style.display = 'none' // Hide section4 if there is no input
+        }
+      })
 
       // Clone the span and remove the 'highlight' class
       let clonedSpan = span.cloneNode(true)
       clonedSpan.classList.remove('highlight')
       clonedSpan.style.display = 'inline-block';  // Add this line
       clonedSpan.style.width = '200px';  // Add this line, adjust the width as per your requirements
-
-      logBtn.style.display = 'block'
-
 
       highlighted.appendChild(clonedSpan) // Append the cloned span to the new element
       highlighted.appendChild(inputForm) // Append the input form to the new element
@@ -140,10 +155,7 @@ draft.addEventListener('mouseup', function () {
 })
 
 logBtn.addEventListener('click', () => {
-  sorry.style.display = 'block'
-  gif.style.display = 'block'
-
-
+  section5.style.display = 'block' // Make section5 visible
   let initialJoke = draft.innerText
   console.log(`Prompt: Here is a silly joke: "${initialJoke}". Can you rewrite it to make it funnier while being close to the original and replacing:`)
 
