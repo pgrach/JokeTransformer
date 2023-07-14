@@ -130,6 +130,7 @@ draft.addEventListener('mouseup', () => {
       // Create an input form
       let inputForm = document.createElement('input')
       inputForm.type = 'text'
+      inputForm.className = 'input-form'  // To adjust CSS style
       inputForm.placeholder = 'you want to replace it with...'
       
       // event listener that will display the  button (section4) when the user types into the input
