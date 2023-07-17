@@ -45,10 +45,10 @@ bringItBtn.addEventListener('click', async () => {
   section2.style.display = 'block' // Making section2 visible
   selected.innerText = joke // Displaying the fetched joke
 
-    // Hide section3, section4, and section5
-    section3.style.display = 'none'
-    section4.style.display = 'none'
-    section5.style.display = 'none'
+  // Hide section3, section4, and section5
+  section3.style.display = 'none'
+  section4.style.display = 'none'
+  section5.style.display = 'none'
 
   // Remove all highlighted text from spongeArea
   let highlightedElements = spongeArea.querySelectorAll('div')  // assuming 'div' is what you use for highlighted text
@@ -56,7 +56,7 @@ bringItBtn.addEventListener('click', async () => {
     spongeArea.removeChild(element)
   }
 
-  })
+})
 
 // Show spongeArea on transBtn click
 transBtn.addEventListener('click', () => {
@@ -119,6 +119,7 @@ draft.addEventListener('mouseup', () => {
 
     if (selection.toString().length > 0) {
       let span = document.createElement('span')
+      span.className = 'highlighted-text';  // To adjust CSS style
       span.style.backgroundColor = 'rgba(255, 255, 0, 0.438)' // the color of the marker
       span.className = 'highlight'
       let range = selection.getRangeAt(0)
@@ -132,7 +133,7 @@ draft.addEventListener('mouseup', () => {
       inputForm.type = 'text'
       inputForm.className = 'input-form'  // To adjust CSS style
       inputForm.placeholder = 'you want to replace it with...'
-      
+
       // event listener that will display the  button (section4) when the user types into the input
       inputForm.addEventListener('input', () => {
         if (inputForm.value.length > 0) {
@@ -155,17 +156,41 @@ draft.addEventListener('mouseup', () => {
   }
 })
 
-logBtn.addEventListener('click', () => {
+// OPEN AI API 
+
+logBtn.addEventListener('click', async () => {
   section5.style.display = 'block' // Make section5 visible
   let initialJoke = draft.innerText
-  console.log(`Prompt: Here is a silly joke: "${initialJoke}". Can you rewrite it to make it funnier while being close to the original and replacing:`)
 
   let highlights = spongeArea.querySelectorAll('div')
+
+  // Build the prompt from the console.logs
+  let prompt = `Here is a joke: "${initialJoke}". Can you rewrite it while still being funny, close to the original and replacing:\n`
+
+  console.log(prompt)
+
   highlights.forEach(highlight => {
-    let original = highlight.children[0].innerText;
-    let replacement = highlight.children[1].value;
+    let original = highlight.children[0].innerText
+    let replacement = highlight.children[1].value
+    prompt += `${original} with ${replacement}\n`
+  })
 
-    console.log(`${original} with ${replacement}`);
-  });
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", // tells the server that I am sending JSON data
+      "Authorization": "Bearer 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"
+    },
+    body: JSON.stringify({
+      "model": "gpt-3.5-turbo",
+      "messages": [
+        { "role": "system", "content": "You are a helpful assistant." },
+        { "role": "user", "content": prompt }
+      ]
+    })
+  })
 
-});
+  const dataAPI = await response.json()
+
+  document.getElementById("chatOutput").innerHTML += `<p>${dataAPI.choices[0].message.content}</p>`
+})
