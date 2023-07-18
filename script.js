@@ -180,7 +180,7 @@ logBtn.addEventListener('click', async () => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({prompt }),
+    body: JSON.stringify({ userInput: prompt }),
     })
 
   const dataAPI = await response.json()
