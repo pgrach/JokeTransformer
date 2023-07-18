@@ -167,30 +167,24 @@ logBtn.addEventListener('click', async () => {
   // Build the prompt from the console.logs
   let prompt = `Here is a joke: "${initialJoke}". Can you rewrite it while still being funny, close to the original and replacing:\n`
 
-  console.log(prompt)
-
   highlights.forEach(highlight => {
     let original = highlight.children[0].innerText
     let replacement = highlight.children[1].value
     prompt += `${original} with ${replacement}\n`
   })
 
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+  console.log(prompt)
+
+  const response = await fetch("./api/getOpenAIResponse", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json", // tells the server that I am sending JSON data
-      "Authorization": "Bearer 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"
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      "model": "gpt-3.5-turbo",
-      "messages": [
-        { "role": "system", "content": "You are a helpful assistant." },
-        { "role": "user", "content": prompt }
-      ]
+    body: JSON.stringify({prompt }),
     })
-  })
 
   const dataAPI = await response.json()
+  console.log(response)
 
   document.getElementById("chatOutput").innerHTML += `<p>${dataAPI.choices[0].message.content}</p>`
 })
