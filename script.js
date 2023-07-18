@@ -183,8 +183,11 @@ logBtn.addEventListener('click', async () => {
     body: JSON.stringify({ userInput: prompt }),
     })
 
-  const dataAPI = await response.json()
-  console.log(response)
+    const dataAPI = await response.json();
 
-  document.getElementById("chatOutput").innerHTML += `<p>${dataAPI.choices[0].message.content}</p>`
-})
+    if (dataAPI.response) {
+      document.getElementById("chatOutput").innerHTML += `<p>${dataAPI.response}</p>`;
+    } else {
+      console.error("Invalid response from the server:", dataAPI);
+    }
+  })
