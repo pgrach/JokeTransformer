@@ -173,7 +173,7 @@ logBtn.addEventListener('click', async () => {
     prompt += `${original} with ${replacement}\n`
   })
 
-  console.log(prompt)
+  console.log(prompt) // console log
 
   const response = await fetch("./api/getOpenAIResponse", {
     method: "POST",
