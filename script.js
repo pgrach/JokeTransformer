@@ -114,8 +114,8 @@ markerBtn.addEventListener('click', () => {
 // (for mobile devices) events, and runs the handleHighlight function when either of these events occur.
 
 // Listen for both 'mouseup' and 'touchend' events
-draft.addEventListener('mouseup', handleHighlight);
-draft.addEventListener('touchend', handleHighlight);
+draft.addEventListener('mouseup', () => setTimeout(handleHighlight, 50))
+draft.addEventListener('touchend', () => setTimeout(handleHighlight, 50))
 
 // Text Highlighting
 function handleHighlight() {
