@@ -110,8 +110,15 @@ markerBtn.addEventListener('click', () => {
   section5.style.display = 'none'
 })
 
+// This code listens for both mouseup (for desktop browsers) and touchend 
+// (for mobile devices) events, and runs the handleHighlight function when either of these events occur.
+
+// Listen for both 'mouseup' and 'touchend' events
+draft.addEventListener('mouseup', handleHighlight);
+draft.addEventListener('touchend', handleHighlight);
+
 // Text Highlighting
-draft.addEventListener('mouseup', () => {
+function handleHighlight() {
   if (newEmoji) {
     let selection = window.getSelection()
 
@@ -154,7 +161,8 @@ draft.addEventListener('mouseup', () => {
       spongeArea.appendChild(highlighted) // Append the new element to spongeArea
     }
   }
-})
+}
+
 
 // OPEN AI API 
 
@@ -181,13 +189,13 @@ logBtn.addEventListener('click', async () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ userInput: prompt }),
-    })
-
-    const dataAPI = await response.json();
-
-    if (dataAPI.response) {
-      document.getElementById("chatOutput").innerHTML += `<p>${dataAPI.response}</p>`;
-    } else {
-      console.error("Invalid response from the server:", dataAPI);
-    }
   })
+
+  const dataAPI = await response.json();
+
+  if (dataAPI.response) {
+    document.getElementById("chatOutput").innerHTML += `<p>${dataAPI.response}</p>`;
+  } else {
+    console.error("Invalid response from the server:", dataAPI);
+  }
+})
