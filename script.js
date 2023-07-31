@@ -206,26 +206,30 @@ logBtn.addEventListener('click', async () => {
 
 // event listener for the button to download the result
 document.getElementById('download').addEventListener('click', function() {
-  // Get the share card element and make it visible
   const shareCard = document.getElementById('share-card');
   shareCard.style.display = 'block';
 
-  // Generate the PNG
-  html2canvas(shareCard, {backgroundColor: '#fff' }).then(canvas => {
-    canvas.toBlob(function(blob) {
-      saveAs(blob, "joke_card.jpg");
-    }, 'image/jpeg', 1); // image/jpeg is the MIME type for JPEG
+  html2canvas(shareCard, {backgroundColor: null}).then(function(canvas) {
+    const canvasWithBackground = document.createElement('canvas');
+    canvasWithBackground.width = canvas.width;
+    canvasWithBackground.height = canvas.height;
+
+    const ctx = canvasWithBackground.getContext('2d');
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(canvas, 0, 0);
+
+    canvasWithBackground.toBlob(function(blob) {
+        saveAs(blob, "joke_card.jpg");
+    }, 'image/jpeg', 1);
+
+    shareCard.style.display = 'none';
   });
-
-  // Immediately hide the share card again
-  shareCard.style.display = 'none';
 });
-// This way, the share card is only visible for the moment 
-// it takes to generate the PNG, and should remain hidden at 
-// all other times. You might notice a quick flash when 
-// the share card is made visible and hidden again, 
-// but it's generally fast enough that it shouldn't be noticeable.
 
+// It takes the canvas object created by html2canvas and uses it as a source to draw an image onto the canvasWithBackground.
+// Before drawing the image, it fills the canvasWithBackground with white color.
+// This way, the final image you get will have a white background, as it's now drawn on a white canvas.
 
 
 
