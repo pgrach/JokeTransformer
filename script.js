@@ -193,9 +193,42 @@ logBtn.addEventListener('click', async () => {
 
   const dataAPI = await response.json();
 
+    // Set the innerText for the joke-before and joke-after elements here
+    document.getElementById('joke-before').innerText = initialJoke;
+
   if (dataAPI.response) {
     document.getElementById("chatOutput").innerHTML += `<p>${dataAPI.response}</p>`;
+    document.getElementById('joke-after').innerText = dataAPI.response; // assuming this is your transformed joke
   } else {
     console.error("Invalid response from the server:", dataAPI);
   }
 })
+
+// event listener for the button to download the result
+document.getElementById('download').addEventListener('click', function() {
+  // Get the share card element and make it visible
+  const shareCard = document.getElementById('share-card');
+  shareCard.style.display = 'block';
+
+  // Generate the PNG
+  html2canvas(shareCard).then(canvas => {
+    canvas.toBlob(function(blob) {
+      saveAs(blob, "joke_card.png");
+    });
+  });
+
+  // Immediately hide the share card again
+  shareCard.style.display = 'none';
+});
+// This way, the share card is only visible for the moment 
+// it takes to generate the PNG, and should remain hidden at 
+// all other times. You might notice a quick flash when 
+// the share card is made visible and hidden again, 
+// but it's generally fast enough that it shouldn't be noticeable.
+
+
+
+
+
+
+

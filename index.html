@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js" defer></script> <!-- capture the result as an image -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js" defer></script>     <!-- download the image -->
     <script src="./script.js" defer></script>
     <title>Joke Transformer</title>
 </head>
@@ -53,8 +55,24 @@
                     <img src="https://media.tenor.com/sodwOPHji4wAAAAd/mullah.gif">
                 </fieldset>
             </div>
+            <button class="btn" id="download">Joke Saver</button>
         </div>
     </div>
+
+    <div id="share-card">
+        <div class="joke-before">
+            <h3>Before:</h3>
+            <p id="joke-before"></p>
+        </div>
+        <div class="joke-after">
+            <h3>After:</h3>
+            <p id="joke-after"></p>
+        </div>
+    </div>
+
+    
+
+
 
     <svg style="height: 0;">
         <defs>
