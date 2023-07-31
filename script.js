@@ -211,7 +211,7 @@ document.getElementById('download').addEventListener('click', function() {
   shareCard.style.display = 'block';
 
   // Generate the PNG
-  html2canvas(shareCard).then(canvas => {
+  html2canvas(shareCard, {backgroundColor: '#fff' }).then(canvas => {
     canvas.toBlob(function(blob) {
       saveAs(blob, "joke_card.png");
     });
