@@ -213,8 +213,8 @@ document.getElementById('download').addEventListener('click', function() {
   // Generate the PNG
   html2canvas(shareCard, {backgroundColor: '#fff' }).then(canvas => {
     canvas.toBlob(function(blob) {
-      saveAs(blob, "joke_card.png");
-    });
+      saveAs(blob, "joke_card.jpg");
+    }, 'image/jpeg', 1); // image/jpeg is the MIME type for JPEG
   });
 
   // Immediately hide the share card again
