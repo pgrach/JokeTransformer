@@ -212,8 +212,8 @@ legend.form-heading {
 
 #gif {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content:center;
+    align-items:center;
     flex-direction: column;
     /* This is to align the items vertically */
 }
