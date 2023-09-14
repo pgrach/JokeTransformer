@@ -198,7 +198,7 @@ logBtn.addEventListener('click', async () => {
 
   if (dataAPI.response) {
     document.getElementById("chatOutput").innerHTML += `<p>${dataAPI.response}</p>`;
-    document.getElementById('joke-after').innerText = dataAPI.response; // assuming this is your transformed joke
+    document.getElementById('joke-after').innerText = dataAPI.response; // assuming this is the transformed joke
   } else {
     console.error("Invalid response from the server:", dataAPI);
   }
