@@ -118,7 +118,11 @@ input:checked+.slider:before {
     transform: scale(1.05);
 }
 
-.section1, .section2, .section3, .section4, .section5 {
+.section1,
+.section2,
+.section3,
+.section4,
+.section5 {
     padding: 20px 0;
     text-align: center;
     font-family: 'Roboto', sans-serif;
@@ -128,12 +132,18 @@ form {
     margin: 20px 0;
 }
 
-.input-form, .highlighted-text {
-    padding: 0.5rem;  /* Some padding */
-    border: none;  /* No border */
-    border-radius: 0.5rem;  /* Rounded corners */
-    background-color: #f0f0f0;  /* Light grey background */
-    font-size: 1rem;  /* Large text size */
+.input-form,
+.highlighted-text {
+    padding: 0.5rem;
+    /* Some padding */
+    border: none;
+    /* No border */
+    border-radius: 0.5rem;
+    /* Rounded corners */
+    background-color: #f0f0f0;
+    /* Light grey background */
+    font-size: 1rem;
+    /* Large text size */
 }
 
 .tremble {
@@ -158,7 +168,8 @@ legend.form-heading {
     font-weight: bold;
 }
 
-#bringItBtn, #transBtn {
+#bringItBtn,
+#transBtn {
     display: block;
     margin: auto;
 }
@@ -169,13 +180,18 @@ legend.form-heading {
 }
 
 #markerBtn {
-    display: flex;/* Make the button a flex container */
-    justify-content: center;/* Center content horizontally */
-    align-items: center;/* Center content vertically */
+    display: flex;
+    /* Make the button a flex container */
+    justify-content: center;
+    /* Center content horizontally */
+    align-items: center;
+    /* Center content vertically */
     width: 3rem;
     height: 3rem;
-    margin: 1rem;  /* Add some margin */
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);  /* Add a box shadow */
+    margin: 1rem;
+    /* Add some margin */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    /* Add a box shadow */
     border-radius: 30% 30% 30% 30%/30% 30% 30% 30%;
     font-size: 1.5rem;
     border: none;
@@ -184,13 +200,17 @@ legend.form-heading {
 }
 
 #markerBtn:hover {
-    transform: scale(1.1);/* On hover, scale the button to make it slightly larger */
-    cursor: grab; /* Change the cursor to a grab on hover */
-    background-color: var(--primary);  /* Change the background color on hover */
+    transform: scale(1.1);
+    /* On hover, scale the button to make it slightly larger */
+    cursor: grab;
+    /* Change the cursor to a grab on hover */
+    background-color: var(--primary);
+    /* Change the background color on hover */
 }
 
 #markerBtn:active {
-    transform: scale(0.95); /* On click, scale the button back down slightly for a "pressed" effect */
+    transform: scale(0.95);
+    /* On click, scale the button back down slightly for a "pressed" effect */
 }
 
 #emoji {
@@ -212,10 +232,10 @@ legend.form-heading {
 
 #gif {
     display: flex;
-    justify-content:center;
-    align-items:center;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    /* This is to align the items vertically */
+    position: relative;
 }
 
 .highlight {
@@ -224,7 +244,42 @@ legend.form-heading {
 
 #share-card {
     display: none;
-  }
+}
+
+/* Loading API indicator: */
+.spinner {
+    display: inline-block;
+    position: absolute;
+    top: 100%;           /* Adjust this value to position the spinner from the top */
+    left: 50%;
+    transform: translateX(-50%); /* This centers the spinner horizontally */
+    width: 50px;
+    height: 50px;
+    z-index: 10;  /* Ensure spinner is above the GIF */
+}
+
+.spinner .circle {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    margin: 6px;
+    border: 6px solid #fff;
+    border-radius: 50%;
+    animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 @keyframes tremble {
 

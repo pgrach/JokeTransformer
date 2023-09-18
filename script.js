@@ -167,6 +167,9 @@ function handleHighlight() {
 // OPEN AI API 
 
 logBtn.addEventListener('click', async () => {
+  const loadingIndicator = document.getElementById('loadingIndicator');
+  loadingIndicator.style.display = 'block'; // Show the spinner
+
   section5.style.display = 'block' // Make section5 visible
   let initialJoke = draft.innerText
 
@@ -202,6 +205,8 @@ logBtn.addEventListener('click', async () => {
   } else {
     console.error("Invalid response from the server:", dataAPI);
   }
+
+  loadingIndicator.style.display = 'none'; // Hide the spinner once done
 })
 
 // event listener for the button to download the result
