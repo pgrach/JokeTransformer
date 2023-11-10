@@ -162,7 +162,6 @@ fieldset {
 }
 
 legend.form-heading {
-    padding: 10px;
     color: var(--primary);
     font-size: 1.2em;
     font-weight: bold;
