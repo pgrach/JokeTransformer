@@ -9,7 +9,7 @@ export default async function handler(req, res) {
                 "Authorization": `Bearer ${process.env.OPENAI_KEY}`
             },
             body: JSON.stringify({
-                "model": "gpt-3.5-turbo",
+                "model": "gpt-4-1106-preview",
                 "messages": [
                     { "role": "system", "content": "You are a helpful assistant." },
                     { "role": "user", "content": userInput }
