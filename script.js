@@ -204,35 +204,35 @@ logBtn.addEventListener('click', async () => {
     body: JSON.stringify({ userInput: prompt }),
 });
 
-const dataAPI = await response.json();
+  const dataAPI = await response.json();
 
-const responseClaude = await fetch("./api/getClaudeResponse", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ userInput: prompt }),
-});
-  
-const dataAPIClaude = await responseClaude.json();
+  const responseClaude = await fetch("./api/getClaudeResponse", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userInput: prompt }),
+  });
+    
+  const dataAPIClaude = await responseClaude.json();
 
-// Set the innerText for the joke-before element
-document.getElementById('joke-before').innerText = initialJoke;
+  // Set the innerText for the joke-before element
+  document.getElementById('joke-before').innerText = initialJoke;
 
-if (dataAPI.response) {
-    document.getElementById("chatOutput").innerHTML = `<p>${dataAPI.response}</p>`;
-    document.getElementById('joke-after').innerText = dataAPI.response;
-} else {
-    console.error("Invalid response from the OpenAI server:", dataAPI);
-}
+  if (dataAPI.response) {
+      document.getElementById("chatOutput").innerHTML = `<p>${dataAPI.response}</p>`;
+      document.getElementById('joke-after').innerText = dataAPI.response;
+  } else {
+      console.error("Invalid response from the OpenAI server:", dataAPI);
+  }
 
-if (dataAPIClaude.response && Array.isArray(dataAPIClaude.response.content)) {
-    const formattedClaudeResponse = dataAPIClaude.response.content.map(item => item.text).join(" ");
-    document.getElementById("ClaudeOutput").innerHTML = `<p>${formattedClaudeResponse}</p>`;
-} else {
-    console.error("Invalid response from the Claude server:", dataAPIClaude);
-    document.getElementById("ClaudeOutput").innerText = "Error in response from Claude";
-}
+  if (dataAPIClaude.response && Array.isArray(dataAPIClaude.response.content)) {
+      const formattedClaudeResponse = dataAPIClaude.response.content.map(item => item.text).join(" ");
+      document.getElementById("ClaudeOutput").innerHTML = `<p>${formattedClaudeResponse}</p>`;
+  } else {
+      console.error("Invalid response from the Claude server:", dataAPIClaude);
+      document.getElementById("ClaudeOutput").innerText = "Error in response from Claude";
+  }
 
   console.log(dataAPIClaude); // Log the entire response object to see its structure.
 
