@@ -196,7 +196,6 @@ logBtn.addEventListener('click', async () => {
 
   console.log(prompt) // console log
 
-
   const response = await fetch("./api/getOpenAIResponse", {
     method: "POST",
     headers: {
@@ -232,6 +231,17 @@ logBtn.addEventListener('click', async () => {
   } else {
     console.error("Invalid response from the server:", dataAPI);
   }
+
+  console.log(dataAPIClaude); // Log the entire response object to see its structure.
+
+  // Handling Claude API response
+  if (dataAPIClaude.response && Array.isArray(dataAPIClaude.response.content)) {
+    const formattedClaudeResponse = dataAPIClaude.response.content.map(item => item.text).join(" ");
+    document.getElementById("ClaudeOutput").innerHTML = `<p>${formattedClaudeResponse}</p>`;
+  } else {
+    console.error("Invalid response from the Claude server:", dataAPIClaude);
+    document.getElementById("ClaudeOutput").innerText = "Error in response from Claude";
+  }  
 
   loadingIndicator.style.display = 'none'; // Hide the spinner once done
 })
