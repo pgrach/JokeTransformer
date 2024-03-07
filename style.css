@@ -128,16 +128,6 @@ input:checked+.slider:before {
     font-family: 'Roboto', sans-serif;
 }
 
-.fieldset-container {
-    display: flex;
-    justify-content: space-around; /* This spreads out the items evenly */
-    align-items: center; /* This vertically centers the items in their container */
-}
-
-.fieldset-container fieldset {
-    margin: 0 10px; /* Adds some space between the fieldsets */
-}
-
 form {
     margin: 20px 0;
 }
@@ -278,6 +268,11 @@ legend.form-heading {
     border-radius: 50%;
     animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     border-color: #fff transparent transparent transparent;
+}
+
+.logo {
+    width: 50px; /* or any size you prefer */
+    height: auto;
 }
 
 @keyframes spinner {
